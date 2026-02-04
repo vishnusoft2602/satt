@@ -1,0 +1,143 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Surprise ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #ffd6d6; /* light red */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        font-size: 32px;
+        color: #b30000;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 12px 30px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        background: #ff4d4d;
+        color: white;
+        transition: transform 0.2s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    .message {
+        margin-top: 30px;
+        font-size: 22px;
+        color: #800000;
+    }
+
+    .bold {
+        font-weight: bold;
+        font-size: 26px;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        bottom: -20px;
+        font-size: 24px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-110vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <button id="chanceBtn" style="display:none;" onclick="chanceClicked()">Can I get a chance</button>
+
+    <h1 id="question">Hey! Rishi will you be my Valentine ❤️😍💕</h1>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="yesClicked()">Yes</button>
+        <button id="noBtn" onclick="noClicked()">No</button>
+        <button id="reallyBtn" style="display:none;" onclick="reallyClicked()">Really?</button>
+    </div>
+
+    <div id="result" class="message"></div>
+</div>
+
+<script>
+    function yesClicked() {
+        document.getElementById("question").style.display = "none";
+        document.querySelector(".buttons").style.display = "none";
+
+        document.getElementById("result").innerHTML =
+            "<div class='bold'>Yah! I LOVE YOU ❤️😍</div>" +
+            "<div>I am the happiest person</div>" +
+            "<div>❤️😘💕❤️</div>";
+    }
+
+    function noClicked() {
+        document.getElementById("noBtn").style.display = "none";
+        document.getElementById("reallyBtn").style.display = "inline-block";
+    }
+
+    function reallyClicked() {
+        document.getElementById("reallyBtn").style.display = "none";
+        document.getElementById("chanceBtn").style.display = "inline-block";
+    }
+
+    function chanceClicked() {
+        document.getElementById("chanceBtn").style.display = "none";
+        document.getElementById("result").innerHTML = "Please click on Yes ❤️";
+        document.getElementById("noBtn").style.display = "none";
+        document.getElementById("reallyBtn").style.display = "none";
+    }
+
+    /* Create floating hearts */
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }, 400);
+</script>
+
+</body>
+</html>
